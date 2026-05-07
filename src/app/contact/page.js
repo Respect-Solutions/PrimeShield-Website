@@ -3,6 +3,19 @@
 import Navbar from "@/components/common/Navbar/Navbar";
 import styles from "./page.module.css";
 
+function gtagReportConversion(url) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "conversion", {
+      send_to: "AW-18127833743/p-WVCOGv86UcEI-Vg8RD",
+      event_callback: () => {
+        if (url) window.location = url;
+      },
+    });
+  } else {
+    if (url) window.location = url;
+  }
+}
+
 const SOCIALS = [
   {
     name: "Facebook",
@@ -63,6 +76,11 @@ export default function SocialPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.card}
+                onClick={(e) => {
+                  e.preventDefault();
+                  gtagReportConversion(item.url);
+                  setTimeout(() => window.open(item.url, "_blank"), 300);
+                }}
               >
                 <div className={styles.icon}>
                   <i className={item.icon}></i>
