@@ -1,6 +1,11 @@
 export default function sitemap() {
   return [
     {
+      url: "https://primeshield.com.sa/blogs",
+      lastModified: "2026-06-19",
+      priority: 0.8,
+    },
+    {
       url: "https://primeshield.com.sa/",
       lastModified: "2026-06-19",
       priority: 1.0,

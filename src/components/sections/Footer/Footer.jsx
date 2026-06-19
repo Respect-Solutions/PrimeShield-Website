@@ -169,7 +169,8 @@ export default function Footer() {
         {/* ===== Map Section ===== */}
         <div className={styles.mapWrapper}>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28975.76169929128!2d46.63776014999999!3d24.7964735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8444da3822630a31%3A0x76d088b4fa5bc033!2zUHJpbWUgU2hpZWxkIENvbXBhbnkg2LTYsdmD2Kkg2KjYsdin2YrZhSDYtNmK2YTYrw!5e0!3m2!1sen!2seg!4v1771108863158!5m2!1sen!2seg"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.0818017857325!2d46.63927688835949!3d24.80649139703661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee3241e919033%3A0xea8bf6db3845da64!2zUHJpbWUgU2hpZWxkIENvbXBhbnkg2LTYsdmD2Kkg2KjYsdin2YrZhSDYtNmK2YTYrw!5e0!3m2!1sen!2seg!4v1781835906187!5m2!1sen!2seg"
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>

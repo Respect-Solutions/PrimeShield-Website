@@ -87,6 +87,17 @@ export default function Navbar() {
             </Link>
 
             <Link
+              href="/blogs"
+              className={`${styles.link} ${
+                pathname === "/blogs" || pathname.startsWith("/blogs/")
+                  ? styles.active
+                  : ""
+              }`}
+            >
+              المقالات
+            </Link>
+
+            <Link
               href="/contact"
               className={`${styles.link} ${
                 pathname === "/contact" ? styles.active : ""
@@ -138,7 +149,11 @@ export default function Navbar() {
             <Link href="/certificates" onClick={() => setMenuOpen(false)}>
               الشهادات
             </Link>
-            
+
+            <Link href="/blogs" onClick={() => setMenuOpen(false)}>
+              المقالات
+            </Link>
+
             <Link href="/contact" onClick={() => setMenuOpen(false)}>
               حساباتنا
             </Link>
