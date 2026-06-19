@@ -3,13 +3,9 @@
 import { useState } from "react";
 import ContactModal from "../ContactModal/ContactModal";
 import styles from "./CompanyProfile.module.css";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function CompanyProfile() {
-  const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
-  const isHome = pathname === "/";
 
   return (
     <section className={styles.section}>
@@ -24,7 +20,7 @@ export default function CompanyProfile() {
           <a
             className={styles.button}
             download
-            href="./assets/companyProfile_compressed.pdf"
+            href="/assets/companyProfile_compressed.pdf"
           >
             تحميل الملف
             <i className="fa-solid fa-download"></i>{" "}

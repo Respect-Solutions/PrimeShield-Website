@@ -138,7 +138,7 @@ export default function ContactModal({ isOpen, onClose }) {
 
               <div style={{ width: "100%" }}>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="البريد الإلكتروني"
                   value={form.email}
                   onChange={(e) => handleChange("email", e.target.value)}

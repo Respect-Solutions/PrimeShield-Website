@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./AboutCardsSection.module.css";
 
 const CARDS = [
@@ -45,7 +46,7 @@ export default function AboutCardsSection() {
               }`}
               onClick={() => handleClick(index)}
             >
-              <img src={card.image} alt={card.title} />
+              <Image fill src={card.image} alt={card.title} sizes="(max-width: 992px) 100vw, 50vw" style={{ objectFit: "cover" }} />
 
               <div className={styles.overlay} />
 

@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 const SOCIALS = [
@@ -45,7 +46,7 @@ export default function Footer() {
           {/* ===== Right Column (Company) ===== */}
           <div className={styles.company}>
             <div className={styles.logoRow}>
-              <img src="/assets/footerLogo_result.webp" alt="Prime Shield" />
+              <Image src="/assets/footerLogo_result.webp" alt="Prime Shield" width={120} height={40} style={{ height: "40px", width: "auto" }} />
               <h3 className={styles.companyName}>برايم شيلد</h3>
             </div>
 

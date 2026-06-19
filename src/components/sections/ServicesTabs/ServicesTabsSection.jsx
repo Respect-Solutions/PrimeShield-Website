@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./ServicesTabsSection.module.css";
 
 const TABS = [
@@ -180,7 +181,7 @@ export default function ServicesTabsSection() {
                   setActiveCard(activeCard === index ? null : index)
                 }
               >
-                <img src={card.image} alt={card.title} />
+                <Image fill src={card.image} alt={card.title} sizes="(max-width: 992px) 100vw, 50vw" style={{ objectFit: "cover" }} />
                 <div className={styles.overlay} />
                 <div className={styles.content}>
                   <h3 className={styles.cardTitle}>{card.title}</h3>
@@ -212,7 +213,7 @@ export default function ServicesTabsSection() {
                       )
                     }
                   >
-                    <img src={card.image} alt={card.title} />
+                    <Image fill src={card.image} alt={card.title} sizes="(max-width: 992px) 100vw, 50vw" style={{ objectFit: "cover" }} />
                     <div className={styles.overlay} />
                     <div className={styles.content}>
                       <h3 className={styles.cardTitle}>{card.title}</h3>

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "الشهادات",
+  description: "شهادات اعتماد برايم شيلد: عقود الشراكة، شهادات اعتماد مقاول منفذ، والتراخيص والاعتمادات الحكومية.",
+};
+
 import Navbar from '@/components/common/Navbar/Navbar'
 import CertificatesSection from '@/components/sections/Certificates/CertificatesSection'
 import CertificatesHeroSection from '@/components/sections/CertificatesHero/CertificatesHeroSection'

@@ -109,11 +109,6 @@ export default function HeroSection() {
           </div>
 
           <div className={`${styles.cta} hero-cta`}>
-            {/* <button className={styles.primaryCta}>
-              <span>طلب عرض سعر</span>
-              <i className="fa-solid fa-receipt"></i>
-            </button> */}
-
             <div
               className={`${styles.scrollDown} hero-cta`}
               onClick={() => {

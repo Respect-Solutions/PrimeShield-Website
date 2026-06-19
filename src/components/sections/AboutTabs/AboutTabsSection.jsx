@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./AboutTabsSection.module.css";
 
 const TABS = [
@@ -52,7 +53,7 @@ export default function AboutTabsSection() {
             </div>
 
             <div className={styles.imageBox}>
-              <img src={TABS[active].image} alt="about" />
+              <Image fill src={TABS[active].image} alt="about" sizes="(max-width: 768px) 100vw, 35vw" style={{ objectFit: "cover" }} />
             </div>
           </div>
         </div>
@@ -69,7 +70,7 @@ export default function AboutTabsSection() {
                 </div>
 
                 <div className={styles.imageBox}>
-                  <img src={item.image} alt={item.title} />
+                  <Image fill src={item.image} alt={item.title} sizes="100vw" style={{ objectFit: "cover" }} />
                 </div>
               </div>
             </div>

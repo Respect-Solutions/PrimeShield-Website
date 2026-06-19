@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/common/Navbar/Navbar";
+import Footer from "@/components/sections/Footer/Footer";
 import styles from "./page.module.css";
 
 function gtagReportConversion(url) {
@@ -94,6 +95,7 @@ export default function SocialPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

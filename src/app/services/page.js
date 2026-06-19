@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "خدماتنا",
+  description: "خدمات برايم شيلد: العزل المائي والحراري، إيبوكسي الأرضيات والخزانات، أنظمة البولي يوريثان، المعالجة الكريستالية، والمقاولات العامة.",
+};
+
 import Navbar from '@/components/common/Navbar/Navbar'
 import CTASection from '@/components/sections/CTA/CTASection'
 import FAQSection from '@/components/sections/FAQ/FAQSection'

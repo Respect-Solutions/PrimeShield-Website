@@ -1,19 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import styles from "./AboutVisionMissionSection.module.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function AboutVisionMissionSection() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-out-cubic",
-      once: false,
-      mirror: true,
-    });
-  }, []);
 
   return (
     <section className={styles.section}>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styles from "./PartnershipSection.module.css";
 
 const PARTNERS = [
@@ -27,7 +28,7 @@ export default function PartnershipSection() {
           {[...PARTNERS, ...PARTNERS].map((partner, i) => (
             <div key={i} className={styles.card}>
               <div className={styles.logoWrapper}>
-                <img src={partner.logo} alt={partner.name} />
+                <Image src={partner.logo} alt={partner.name} width={60} height={60} />
               </div>
               <p className={styles.name}>{partner.name}</p>
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styles from "./ClientsSection.module.css";
 
 const CLIENTS = [
@@ -60,7 +61,7 @@ export default function ClientsSection() {
               </div>
 
               <div className={styles.logoWrapper}>
-                {client.logo && <img src={client.logo} alt="client logo" />}
+                {client.logo && <Image src={client.logo} alt="client logo" width={60} height={60} />}
               </div>
             </div>
           ))}

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "المشاريع",
+  description: "استعرض مشاريع برايم شيلد المميزة في العزل الهندسي والمقاولات العامة في مختلف مناطق المملكة العربية السعودية.",
+};
+
 import Navbar from '@/components/common/Navbar/Navbar'
 import CTASection from '@/components/sections/CTA/CTASection'
 import Footer from '@/components/sections/Footer/Footer'

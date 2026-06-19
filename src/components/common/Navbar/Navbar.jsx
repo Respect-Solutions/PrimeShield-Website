@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import styles from "./Navbar.module.css";
 import ContactModal from "../../sections/ContactModal/ContactModal";
@@ -34,7 +35,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className={styles.logo}>
             <Link href="/">
-              <img src="/assets/navLogo_result.webp" alt="Prime Shield Logo" />
+              <Image src="/assets/navLogo_result.webp" alt="Prime Shield Logo" width={160} height={48} style={{ height: "48px", width: "auto" }} />
             </Link>
           </div>
 

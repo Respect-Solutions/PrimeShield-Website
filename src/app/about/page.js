@@ -1,16 +1,15 @@
+export const metadata = {
+  title: "من نحن",
+  description: "تعرف على شركة برايم شيلد — خبرة تتجاوز 12 عامًا في العزل المائي والحراري وأكثر من 40 عامًا في المقاولات العامة بالمملكة العربية السعودية.",
+};
+
 import Navbar from '@/components/common/Navbar/Navbar'
-import AboutCardsSection from '@/components/sections/AboutCards/AboutCardsSection'
 import AboutHeroSection from '@/components/sections/AboutHero/AboutHeroSection'
 import AboutTabsSection from '@/components/sections/AboutTabs/AboutTabsSection'
 import AboutVisionMissionSection from '@/components/sections/AboutVisionMission/AboutVisionMissionSection'
-import ClientsSection from '@/components/sections/Clients/ClientsSection'
-import CTASection from '@/components/sections/CTA/CTASection'
-import Footer from '@/components/sections/Footer/Footer'
-import PartnershipSection from '@/components/sections/Partnership/PartnershipSection'
-import ProjectsSection from '@/components/sections/Projects/ProjectsSection'
 import ServicesSection from '@/components/sections/Service/ServiceSection'
+import Footer from '@/components/sections/Footer/Footer'
 import Styles from './page.module.css'
-import React from 'react'
 import AboutWrapper from '@/components/sections/AboutWrapper/AboutWrapper'
 
 export default function AboutPage() {

@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "./CertificatesSection.module.css";
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 const PARTNERS = [
   "/assets/cert-24.jpeg",
@@ -50,18 +50,7 @@ export default function CertificatesSection() {
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
-
     setDelayStep(isMobile ? 40 : 80);
-
-    AOS.init({
-      duration: isMobile ? 600 : 800,
-      easing: "ease-out-cubic",
-      once: false,
-      mirror: true,
-      offset: 0, // 👈 يظهر أول ما bottom يلمس top
-      anchorPlacement: "top-bottom",
-    });
-
     AOS.refresh();
   }, []);
 
@@ -86,7 +75,7 @@ export default function CertificatesSection() {
                 data-aos={getAnimation(i)}
                 data-aos-delay={i * delayStep}
               >
-                <img src={img} alt="certificate" loading="eager" />
+                <Image src={img} alt="certificate" width={800} height={600} style={{ width: "100%", height: "auto", objectFit: "contain", borderRadius: "20px" }} />
               </div>
             ))}
           </div>
@@ -104,7 +93,7 @@ export default function CertificatesSection() {
                 data-aos={getAnimation(i)}
                 data-aos-delay={i * delayStep}
               >
-                <img src={img} alt="certificate" loading="eager" />
+                <Image src={img} alt="certificate" width={800} height={600} style={{ width: "100%", height: "auto", objectFit: "contain", borderRadius: "20px" }} />
               </div>
             ))}
           </div>
@@ -122,7 +111,7 @@ export default function CertificatesSection() {
                 data-aos={getAnimation(i)}
                 data-aos-delay={i * delayStep}
               >
-                <img src={img} alt="certificate" loading="eager" />
+                <Image src={img} alt="certificate" width={800} height={600} style={{ width: "100%", height: "auto", objectFit: "contain", borderRadius: "20px" }} />
               </div>
             ))}
           </div>
