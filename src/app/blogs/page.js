@@ -1,4 +1,3 @@
-import Navbar from "@/components/common/Navbar/Navbar";
 import BlogsHeroSection from "@/components/sections/BlogsHero/BlogsHeroSection";
 import BlogsListSection from "@/components/sections/BlogsList/BlogsListSection";
 import CTASection from "@/components/sections/CTA/CTASection";
@@ -18,7 +17,6 @@ export default async function BlogsPage() {
 
   return (
     <>
-      <Navbar />
       <BlogsHeroSection />
       <BlogsListSection blogs={blogs} />
       <CTASection />

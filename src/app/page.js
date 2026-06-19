@@ -1,4 +1,3 @@
-import Navbar from "@/components/common/Navbar/Navbar";
 import AboutSection from "@/components/sections/About/AboutSection";
 import ClientsResultsSection from "@/components/sections/ClientsResults/ClientsResultsSection";
 import CTASection from "@/components/sections/CTA/CTASection";
@@ -14,7 +13,6 @@ import styles from './page.module.css'
 export default function HomePage() {
   return (
     <main className={styles.section}>
-      <Navbar/>
       <HeroSection />
       <AboutSection />
       <VisionSection />

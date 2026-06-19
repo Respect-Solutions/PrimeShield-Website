@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import AOS from "aos";
 import Image from "next/image";
 import styles from "./ProjectsPageSection.module.css";
 import { PROJECTS } from "@/data/projects";

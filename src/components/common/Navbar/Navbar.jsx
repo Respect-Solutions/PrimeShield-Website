@@ -13,8 +13,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     gsap.from(navRef.current, {
@@ -25,11 +24,17 @@ export default function Navbar() {
     });
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       <header
         ref={navRef}
-        className={`${styles.navbar}`}
+        className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
       >
         <div className={`container ${styles.inner}`}>
           {/* Logo */}

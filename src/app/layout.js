@@ -3,6 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AOSProvider from "@/components/common/AOSProvider";
+import Navbar from "@/components/common/Navbar/Navbar";
 
 export const metadata = {
   title: {
@@ -53,6 +54,7 @@ gtag('config', 'AW-18127833743');`,
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <Navbar />
         <AOSProvider>{children}</AOSProvider>
       </body>
     </html>

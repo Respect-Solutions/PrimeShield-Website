@@ -3,7 +3,6 @@ export const metadata = {
   description: "تعرف على شركة برايم شيلد — خبرة تتجاوز 12 عامًا في العزل المائي والحراري وأكثر من 40 عامًا في المقاولات العامة بالمملكة العربية السعودية.",
 };
 
-import Navbar from '@/components/common/Navbar/Navbar'
 import AboutHeroSection from '@/components/sections/AboutHero/AboutHeroSection'
 import AboutTabsSection from '@/components/sections/AboutTabs/AboutTabsSection'
 import AboutVisionMissionSection from '@/components/sections/AboutVisionMission/AboutVisionMissionSection'
@@ -15,7 +14,6 @@ import AboutWrapper from '@/components/sections/AboutWrapper/AboutWrapper'
 export default function AboutPage() {
   return (
     <main className={Styles.section}>
-      <Navbar/>
       <AboutHeroSection />
       <AboutTabsSection />
       <AboutVisionMissionSection />

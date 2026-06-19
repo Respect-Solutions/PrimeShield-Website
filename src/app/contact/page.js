@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/common/Navbar/Navbar";
 import Footer from "@/components/sections/Footer/Footer";
 import styles from "./page.module.css";
 
@@ -58,8 +57,6 @@ const SOCIALS = [
 export default function SocialPage() {
   return (
     <>
-      <Navbar />
-
       <main className={styles.page}>
         <div className="container">
           {/* Header */}

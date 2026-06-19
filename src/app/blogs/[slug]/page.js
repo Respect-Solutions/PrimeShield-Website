@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Navbar from "@/components/common/Navbar/Navbar";
 import BlogDetailSection from "@/components/sections/BlogDetail/BlogDetailSection";
 import CTASection from "@/components/sections/CTA/CTASection";
 import Footer from "@/components/sections/Footer/Footer";
@@ -35,7 +34,6 @@ export default async function BlogDetailPage({ params }) {
 
   return (
     <>
-      <Navbar />
       <BlogDetailSection blog={blog} />
       <CTASection />
       <Footer />
