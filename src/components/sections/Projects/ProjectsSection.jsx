@@ -2,20 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProjectsSection.module.css";
-import { PROJECTS } from "@/data/projects";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ projects = [] }) {
   const [active, setActive] = useState(0);
+  const count = projects.length;
 
-  // 🔁 Auto switching
   useEffect(() => {
+    if (count === 0) return;
     const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % PROJECTS.length);
+      setActive((prev) => (prev + 1) % count);
     }, 4000);
-
     return () => clearInterval(interval);
-  }, []);
+  }, [count]);
+
+  if (count === 0) return null;
+
+  const project = projects[active];
 
   return (
     <section className={styles.section}>
@@ -23,26 +27,49 @@ export default function ProjectsSection() {
         <h2 className={styles.title}>مشاريعنا المميزة</h2>
 
         <div className={styles.projectCard}>
-          <Image
-            key={active}
-            fill
-            src={PROJECTS[active].image}
-            alt={PROJECTS[active].title}
-            className={styles.image}
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-          />
+          {project.imageUrl && (
+            <Image
+              key={active}
+              fill
+              src={project.imageUrl}
+              alt={project.title}
+              className={styles.image}
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+            />
+          )}
 
           <div className={styles.overlay} />
 
           <div className={styles.content}>
-            <h3 className={styles.projectTitle}>
-              {PROJECTS[active].title}
-              <span className={styles.line}></span>
-            </h3>
+            <div>
+              <h3 className={styles.projectTitle}>
+                {project.title}
+                <span className={styles.line} />
+              </h3>
+              {project.slug && (
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className={styles.detailLink}
+                >
+                  تفاصيل المشروع
+                  <i className="fa-solid fa-arrow-left" />
+                </Link>
+              )}
+            </div>
           </div>
         </div>
 
+        {/* Dots */}
+        <div className={styles.dots}>
+          {projects.map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.dot} ${i === active ? styles.activeDot : ""}`}
+              onClick={() => setActive(i)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

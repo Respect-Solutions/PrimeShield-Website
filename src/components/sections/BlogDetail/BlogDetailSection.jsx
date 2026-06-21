@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./BlogDetailSection.module.css";
-import { formatArabicDate } from "@/lib/api";
+import { formatArabicDate, absoluteImageUrl } from "@/lib/api";
 
 function renderBody(body) {
   if (!body) return null;
@@ -39,6 +39,29 @@ function renderBody(body) {
                 : block.value?.text || ""}
             </h2>
           );
+
+        case "embed_html":
+          return (
+            <div
+              key={key}
+              className={styles.richText}
+              dangerouslySetInnerHTML={{ __html: block.value }}
+            />
+          );
+
+        case "image": {
+          const imgSrc = absoluteImageUrl(block.value?.url);
+          return imgSrc ? (
+            <div key={key} className={styles.bodyImage}>
+              <Image
+                src={imgSrc}
+                alt={block.value.alt || ""}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : null;
+        }
 
         case "quote":
         case "block_quote":

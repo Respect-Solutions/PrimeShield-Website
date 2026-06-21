@@ -92,6 +92,26 @@
   width: 100%;
 }
 
+/* ================= Detail Link ================= */
+.detailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-dark);
+  background: var(--color-yellow);
+  border-radius: 10px;
+  transition: gap 0.25s ease, transform 0.25s ease;
+}
+
+.detailLink:hover {
+  gap: 14px;
+  transform: translateX(-4px);
+}
+
 /* ================= Dots ================= */
 .dots {
   margin-top: 40px;

@@ -3,21 +3,24 @@ export const metadata = {
   description: "شهادات اعتماد برايم شيلد: عقود الشراكة، شهادات اعتماد مقاول منفذ، والتراخيص والاعتمادات الحكومية.",
 };
 
-import CertificatesSection from '@/components/sections/Certificates/CertificatesSection'
-import CertificatesHeroSection from '@/components/sections/CertificatesHero/CertificatesHeroSection'
-import CTASection from '@/components/sections/CTA/CTASection'
-import Footer from '@/components/sections/Footer/Footer'
-import PartnershipSection from '@/components/sections/Partnership/PartnershipSection'
-import React from 'react'
-import Styles from './page.module.css'
+export const revalidate = 300;
 
-export default function CertificatesPage() {
+import CertificatesSection from '@/components/sections/Certificates/CertificatesSection';
+import CertificatesHeroSection from '@/components/sections/CertificatesHero/CertificatesHeroSection';
+import CTASection from '@/components/sections/CTA/CTASection';
+import Footer from '@/components/sections/Footer/Footer';
+import Styles from './page.module.css';
+import { getCertificates } from '@/lib/api';
+
+export default async function CertificatesPage() {
+  const certificates = await getCertificates(200);
+
   return (
     <main className={Styles.section}>
       <CertificatesHeroSection />
-      <CertificatesSection />
+      <CertificatesSection certificates={certificates} />
       <CTASection />
-      <Footer/>
+      <Footer />
     </main>
-  )
+  );
 }

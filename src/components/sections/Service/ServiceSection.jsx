@@ -1,59 +1,29 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import styles from "./ServiceSection.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const SERVICES = [
-  {
-    title: "العزل المائي والحراري",
-    desc: "عزل الأسطح، الأقبية، الجدران، الحمامات، المطابخ، والخزانات لحماية المباني من التسربات والحرارة والرطوبة.",
-    image: "/assets/service-1_result.webp",
-  },
-  {
-    title: "إيبوكسي الأرضيات والخزانات",
-    desc: "تنفيذ أنظمة إيبوكسي عالية الجودة للأرضيات والخزانات توفر مقاومة قوية للرطوبة والمواد الكيميائية والاحتكاك",
-    image: "/assets/service-2_result.webp",
-  },
-  {
-    title: "المعالجة الكريستالية والحقن",
-    desc: "معالجة الشروخ وتسربات المياه باستخدام أنظمة كريستالية ومواد حقن متخصصة تعمل على سد المسام والتشققات داخل الخرسانة",
-    image: "/assets/service-3_result.webp",
-  },
-  {
-    title: "أنظمة البولي يوريثان",
-    desc: "تطبيق أنظمة عزل بالبولي يوريثان عالية الكفاءة توفر حماية فائقة ضد تسرب المياه ودرجات الحرارة المرتفعة، مع مرونة عالية تتحمل التمدد والانكماش",
-    image: "/assets/service4_result.webp",
-  },
-  {
-    title: "المقاولات العامة",
-    desc: "تنفيذ أعمال المقاولات العامة للمشاريع السكنية والتجارية والصناعية وفق أعلى معايير الجودة، مع إدارة دقيقة للموقع وضمان الالتزام بالجداول الزمنية.",
-    image: "/assets/service5_result.webp",
-  },
-];
-
-export default function ServicesSection() {
+export default function ServicesSection({ services = [] }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const resumeTimeout = useRef(null);
   const sectionRef = useRef(null);
 
-
-  const leftIndex = (active - 1 + SERVICES.length) % SERVICES.length;
-  const rightIndex = (active + 1) % SERVICES.length;
+  const count = services.length;
+  const leftIndex = count > 0 ? (active - 1 + count) % count : 0;
+  const rightIndex = count > 0 ? (active + 1) % count : 0;
 
   useEffect(() => {
+    if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         sectionRef.current,
-        {
-          opacity: 0,
-          y: 120,
-        },
+        { opacity: 0, y: 120 },
         {
           opacity: 1,
           y: 0,
@@ -68,31 +38,25 @@ export default function ServicesSection() {
         },
       );
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-
-  // 🔁 Auto switching
   useEffect(() => {
-    if (paused) return;
-
+    if (paused || count === 0) return;
     const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % SERVICES.length);
+      setActive((prev) => (prev + 1) % count);
     }, 3000);
-
     return () => clearInterval(interval);
-  }, [paused]);
+  }, [paused, count]);
 
   const handleDotClick = (index) => {
     setActive(index);
     setPaused(true);
-
     clearTimeout(resumeTimeout.current);
-    resumeTimeout.current = setTimeout(() => {
-      setPaused(false);
-    }, 6000);
+    resumeTimeout.current = setTimeout(() => setPaused(false), 6000);
   };
+
+  if (count === 0) return null;
 
   return (
     <section ref={sectionRef} className={styles.services}>
@@ -100,26 +64,26 @@ export default function ServicesSection() {
         <h2 className={styles.sectionTitle}>خدماتنا</h2>
 
         <div className={styles.carousel}>
-          {SERVICES.map((service, i) => {
+          {services.map((service, i) => {
             let position = styles.hidden;
-
             if (i === active) position = styles.active;
             else if (i === leftIndex) position = styles.left;
             else if (i === rightIndex) position = styles.right;
 
             return (
               <div
-                key={i}
+                key={service.id ?? i}
                 className={`${styles.card} ${position}`}
-                style={{ backgroundImage: `url(${service.image})` }}
+                style={
+                  service.imageUrl
+                    ? { backgroundImage: `url(${service.imageUrl})` }
+                    : undefined
+                }
                 onClick={() => {
                   setActive(i);
                   setPaused(true);
-
                   clearTimeout(resumeTimeout.current);
-                  resumeTimeout.current = setTimeout(() => {
-                    setPaused(false);
-                  }, 5000);
+                  resumeTimeout.current = setTimeout(() => setPaused(false), 5000);
                 }}
                 onMouseEnter={() => i === active && setPaused(true)}
                 onMouseLeave={() => i === active && setPaused(false)}
@@ -128,21 +92,28 @@ export default function ServicesSection() {
                 <div className={styles.content}>
                   <h3 className={styles.title}>{service.title}</h3>
                   <div className={styles.line} />
-                  <p className={styles.text}>{service.desc}</p>
+                  <p className={styles.text}>{service.description}</p>
+                  {i === active && service.slug && (
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className={styles.detailLink}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      تفاصيل الخدمة
+                      <i className="fa-solid fa-arrow-left" />
+                    </Link>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Dots */}
         <div className={styles.dots}>
-          {SERVICES.map((_, i) => (
+          {services.map((_, i) => (
             <span
               key={i}
-              className={`${styles.dot} ${
-                i === active ? styles.activeDot : ""
-              }`}
+              className={`${styles.dot} ${i === active ? styles.activeDot : ""}`}
               onClick={() => handleDotClick(i)}
             />
           ))}

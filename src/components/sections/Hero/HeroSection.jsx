@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./HeroSection.module.css";
 
-export default function HeroSection() {
+export default function HeroSection({ h1Title }) {
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -91,9 +91,13 @@ export default function HeroSection() {
         <div className={styles.content}>
           <div className={styles.textBox}>
             <h1 className={`${styles.title} hero-title`}>
-              <span className={styles.brand}>برايم شيلد |</span>
-              <br />
-              خبرة هندسية في المقاولات العامة و خدمات العزل{" "}
+              {h1Title || (
+                <>
+                  <span className={styles.brand}>برايم شيلد |</span>
+                  <br />
+                  خبرة هندسية في المقاولات العامة و خدمات العزل{" "}
+                </>
+              )}
             </h1>
 
             <p className={`${styles.description} hero-desc`}>

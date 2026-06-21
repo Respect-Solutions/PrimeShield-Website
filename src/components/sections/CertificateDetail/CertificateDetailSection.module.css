@@ -1,0 +1,42 @@
+.article {
+  padding: 140px 0 80px;
+  min-height: 100vh;
+  background: #0e0e0e;
+  color: #fff;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f5c518;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: opacity 0.2s;
+}
+.back:hover { opacity: 0.75; }
+
+.title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.category {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+}

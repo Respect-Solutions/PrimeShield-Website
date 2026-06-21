@@ -3,20 +3,24 @@ export const metadata = {
   description: "خدمات برايم شيلد: العزل المائي والحراري، إيبوكسي الأرضيات والخزانات، أنظمة البولي يوريثان، المعالجة الكريستالية، والمقاولات العامة.",
 };
 
+export const revalidate = 300;
+
 import CTASection from '@/components/sections/CTA/CTASection'
 import FAQSection from '@/components/sections/FAQ/FAQSection'
 import Footer from '@/components/sections/Footer/Footer'
 import ServicesHeroSection from '@/components/sections/ServicesHero/ServicesHeroSection'
-import ServicesTabsSection from '@/components/sections/ServicesTabs/ServicesTabsSection'
-import ServicesWrapper from '@/components/sections/ServicesWrapper/ServicesWrapper'
-import React from 'react'
+import ServicesGridSection from '@/components/sections/ServicesGrid/ServicesGridSection'
+import { getServices } from '@/lib/api'
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices(20);
+
   return (
     <>
       <ServicesHeroSection />
-      <ServicesTabsSection />
-      <ServicesWrapper/>
+      <ServicesGridSection services={services} />
+      <FAQSection />
+      <CTASection />
       <Footer/>
     </>
   )

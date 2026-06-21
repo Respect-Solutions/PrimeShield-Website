@@ -1,57 +1,47 @@
-"use client";
-
-import { useEffect } from "react";
-import AOS from "aos";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProjectsPageSection.module.css";
-import { PROJECTS } from "@/data/projects";
 
-export default function ProjectsPageSection() {
-  useEffect(() => {
-    AOS.refresh();
-  }, []);
-
-  const sections = [
-    PROJECTS.slice(0, 4),
-    PROJECTS.slice(4, 10),
-    PROJECTS.slice(10, 16),
-    PROJECTS.slice(16),
-  ];
+export default function ProjectsPageSection({ projects = [] }) {
+  if (projects.length === 0) {
+    return (
+      <section className={styles.section}>
+        <div className="container">
+          <p className={styles.empty}>لا توجد مشاريع حالياً</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <>
-      {sections.map((group, index) => (
-        <section
-          key={index}
-          className={`${styles.section} ${
-            index % 2 === 0 ? styles.dark : styles.yellow
-          }`}
-        >
-          <div className="container">
-            <div className={styles.grid}>
-              {group.map((project, i) => {
-                const isRightColumn = i % 2 === 0;
-                // أول عنصر في الصف بيكون يمين (عشان RTL)
-
-                return (
-                  <div
-                    key={i}
-                    className={styles.card}
-                    data-aos={isRightColumn ? "fade-left" : "fade-right"}
-                    data-aos-delay={i * 100}
-                  >
-                    <Image fill src={project.image} alt={project.title} sizes="(max-width: 992px) 100vw, 50vw" style={{ objectFit: "cover" }} />
-                    <div className={styles.overlay} />
-                    <div className={styles.content}>
-                      <h3 className={styles.title}>{project.title}</h3>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      ))}
-    </>
+    <section className={styles.section}>
+      <div className="container">
+        <div className={styles.grid}>
+          {projects.map((project, i) => (
+            <Link
+              key={project.id}
+              href={`/projects/${project.slug}`}
+              className={styles.card}
+              data-aos={i % 2 === 0 ? "fade-left" : "fade-right"}
+              data-aos-delay={String((i % 4) * 100)}
+            >
+              {project.imageUrl && (
+                <Image
+                  fill
+                  src={project.imageUrl}
+                  alt={project.title}
+                  sizes="(max-width: 992px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+              )}
+              <div className={styles.overlay} />
+              <div className={styles.content}>
+                <h3 className={styles.title}>{project.title}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,45 +1,31 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./ApprovalsSection.module.css";
 
-const CERTIFICATES = [
-  {
-    title: "شهادة اعتماد تطبيق أنظمة العزل المائي",
-    image: "/assets/cert-1_result.webp",
-  },
-  { title: "شهادة شراكة استراتيجية", image: "/assets/cert-2_result.webp" },
-  { title: "شهادة جودة وتنفيذ", image: "/assets/cert-3_result.webp" },
-  { title: "شهادة تميز هندسي", image: "/assets/cert-4_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-5_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-6_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-7_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-8_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-9_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-10_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-13_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-14_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-15_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-16_result.webp" },
-  { title: "شهادة اعتماد دولي", image: "/assets/cert-17_result.webp" },
-];
-
-export default function ApprovalsSection() {
-  const [active, setActive] = useState(1);
+export default function ApprovalsSection({ certificates = [] }) {
+  const [active, setActive] = useState(0);
   const intervalRef = useRef(null);
+  const count = certificates.length;
 
-  const leftIndex = (active - 1 + CERTIFICATES.length) % CERTIFICATES.length;
-  const rightIndex = (active + 1) % CERTIFICATES.length;
+  const leftIndex = count > 0 ? (active - 1 + count) % count : 0;
+  const rightIndex = count > 0 ? (active + 1) % count : 0;
+
+  const startInterval = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % count);
+    }, 4000);
+  };
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActive((prev) => (prev + 1) % CERTIFICATES.length);
-    }, 4000);
-
+    if (count === 0) return;
+    startInterval();
     return () => clearInterval(intervalRef.current);
-  }, []);
+  }, [count]);
 
-
+  if (count === 0) return null;
 
   return (
     <section className={styles.section}>
@@ -47,57 +33,36 @@ export default function ApprovalsSection() {
         <h2 className={styles.title}>الشهادات</h2>
 
         <div className={styles.wrapper}>
-          {CERTIFICATES.map((cert, i) => {
+          {certificates.map((cert, i) => {
             let position = styles.hidden;
-
             if (i === active) position = styles.active;
             else if (i === leftIndex) position = styles.left;
             else if (i === rightIndex) position = styles.right;
 
             return (
               <div
-                key={i}
+                key={cert.id ?? i}
                 className={`${styles.card} ${position}`}
                 onClick={() => {
                   setActive(i);
-                  clearInterval(intervalRef.current);
-
-                  intervalRef.current = setInterval(() => {
-                    setActive((prev) => (prev + 1) % CERTIFICATES.length);
-                  }, 4000);
+                  startInterval();
                 }}
               >
-                {/* الصورة */}
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className={styles.image}
-                />
-
-                {/* overlay */}
-                {/* <div className={styles.overlay} /> */}
-
-                {/* المحتوى */}
-                {/* <div className={styles.content}>
-                  <h3 className={styles.cardTitle}>{cert.title}</h3>
-                </div> */}
+                {cert.imageUrl && (
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      fill
+                      src={cert.imageUrl}
+                      alt={cert.title}
+                      style={{ objectFit: "contain" }}
+                      sizes="(max-width: 768px) 60vw, 32vw"
+                    />
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
-
-        {/* Dots */}
-        {/* <div className={styles.dots}>
-          {CERTIFICATES.map((_, i) => (
-            <span
-              key={i}
-              className={`${styles.dot} ${
-                i === active ? styles.activeDot : ""
-              }`}
-              onClick={() => setActive(i)}
-            />
-          ))}
-        </div> */}
       </div>
     </section>
   );
